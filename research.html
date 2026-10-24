@@ -1,0 +1,308 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What market breadth can and can't tell you: tests on Indian stocks, 2015–2026 · Indian Market Breadth</title>
+<meta name="description" content="41 breadth measures tested on Indian stocks from 2015 to 2026: breadth does not forecast whether the market rises or falls, but it does forecast how deep the next falls are and how often breakouts work.">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Indian Market Breadth">
+<meta property="og:title" content="What market breadth can and can't tell you: tests on Indian stocks, 2015–2026">
+<meta property="og:description" content="41 breadth measures tested on Indian stocks: what forecasts risk, what doesn't, and what was left off the page.">
+<meta property="og:url" content="https://markets.ashwinraghavan.com/research.html"><meta property="og:image" content="https://markets.ashwinraghavan.com/share.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://markets.ashwinraghavan.com/research.html">
+<link rel="icon" type="image/png" href="icon.png"><link rel="apple-touch-icon" href="icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What market breadth can and can't tell you about Indian stocks","about":"Indian stock market breadth","url":"https://markets.ashwinraghavan.com/research.html","isPartOf":{"@type":"WebSite","url":"https://markets.ashwinraghavan.com/"}}</script>
+<script defer src="umami.js" data-website-id="798c8feb-9a52-4620-bc98-d9516d4055c2" data-tag="markets" data-domains="markets.ashwinraghavan.com,ashwinr93.github.io" data-do-not-track="true" data-exclude-search="true" data-exclude-hash="true"></script>
+<script>try{const t=localStorage.getItem('theme');if(t&&t!=='auto')document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+/* The site's design language (docs/design.md), shared by its pages: a 6-step type scale, two weights, one content width,
+   red and green only for direction, and neutrals with a slight blue bias toward the accent. */
+:root{
+ --bg:#f5f6f8;--card:#ffffff;--fg:#15191e;--muted:#5b6470;--faint:#8a929c;--line:#e1e4e9;--accent:#2b5c8f;--accent-soft:#e3ecf5;
+ --text:#353d47;--amber:#e3b04b;--g3:#1d7348;--g2:#5aa878;--g1:#d3eadb;--r3:#b0392b;--r2:#df8a7c;--r1:#f5d6d0;
+ --font-ui:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-head:var(--font-ui);
+ --t-cap:12px;--t-sm:14px;--t-body:16px;--t-lead:18px;--t-h2:20px;--t-big:28px;
+ --w:1120px;--prose:36.5rem;--gap:16px;--radius:10px;color-scheme:light;
+ /* Spacing between things (docs/design.md): list rows · a label and what it labels · after a heading, between cards and
+    between paragraphs · between blocks in a section · between sections. Padding inside a component is its own. */
+ --s-row:6px;--s-label:8px;--s-near:12px;--s-block:16px;--s-section:30px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#101317;--card:#171b20;--fg:#e7eaee;--muted:#9ba4ae;--faint:#6f7883;--line:#2a3038;--accent:#80afe0;--accent-soft:#1d2a38;
+ --text:#c3cad2;--amber:#8f6a1f;--g3:#4cb97d;--g2:#2f7a50;--g1:#1b3526;--r3:#e0705c;--r2:#8a3a2e;--r1:#3d2320;color-scheme:dark}}
+:root[data-theme="dark"]{
+ --bg:#101317;--card:#171b20;--fg:#e7eaee;--muted:#9ba4ae;--faint:#6f7883;--line:#2a3038;--accent:#80afe0;--accent-soft:#1d2a38;
+ --text:#c3cad2;--amber:#8f6a1f;--g3:#4cb97d;--g2:#2f7a50;--g1:#1b3526;--r3:#e0705c;--r2:#8a3a2e;--r1:#3d2320;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 var(--t-body)/1.55 var(--font-ui);-webkit-text-size-adjust:100%}
+main{max-width:var(--w);margin:0 auto;padding:16px 16px 48px}  /* 16px: no header above the tabs (owner, 2026-10-05) */
+a{color:var(--accent);text-underline-offset:2px}
+b,strong,th,dt{font-weight:600}
+h1,h2,h3{font-family:var(--font-head);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:var(--t-big);line-height:1.2}
+h2{font-size:var(--t-h2);line-height:1.3;margin:var(--s-section) 0 var(--s-near)}
+h3{font-size:var(--t-body);line-height:1.35}
+p{margin:0}
+/* Text uses the full content width, like the sections around it (owner, 2026-10-03) */
+.prose,.lead{max-width:var(--prose)}
+/* Running text in a softer ink than headings and key numbers; the lead as quiet as a note (owner's choice, 2026-09-30) */
+.summary,.changes,.about p,.about li{color:var(--text)}.summary b{color:var(--fg)}
+.lead{font-size:var(--t-sm);line-height:1.6;margin-top:var(--s-label);color:var(--text)}
+.meta{font-size:var(--t-sm);color:var(--muted);margin-top:var(--s-label)}
+.note,.legend{font-size:var(--t-sm);line-height:1.6;color:var(--muted)}
+.cap{font-size:var(--t-cap);color:var(--muted)}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.tabs{display:flex;align-items:flex-end;gap:24px;border-bottom:1px solid var(--line);margin-bottom:20px;font-size:var(--t-sm)}
+.tabs a{color:var(--muted);text-decoration:none;padding:0 0 10px;margin-bottom:-1px;border-bottom:2px solid transparent}
+.tabs a:hover{color:var(--fg)}
+.tabs a.on{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
+.theme .seg button{padding:4px 10px;font-size:var(--t-cap)}
+.seg{display:inline-flex}
+.seg button{font:inherit;font-size:var(--t-sm);background:var(--card);color:var(--fg);border:1px solid var(--line);padding:5px 12px;margin:0;border-radius:0;cursor:pointer}
+.seg button:first-child{border-radius:8px 0 0 8px}.seg button:last-child{border-radius:0 8px 8px 0}.seg button+button{border-left:0}
+.seg button.on{background:var(--line);color:var(--fg);border-color:var(--line)}  /* the choice made: a quiet grey */
+.up{color:var(--g3)}.down{color:var(--r3)}
+.about dd{color:var(--muted)}
+html{scrollbar-gutter:stable}
+.tabs .theme{margin-left:auto;align-self:center;padding-bottom:8px}
+.tabs .theme a.hw{color:var(--muted);text-decoration:none;font-size:var(--t-sm)}.tabs .theme a.hw:hover{color:var(--fg)}
+/* How this page works: one line per part, tapped open */
+.about details{border-top:1px solid var(--line)}
+.about details:last-of-type{border-bottom:1px solid var(--line)}
+.about summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;font-weight:600;color:var(--fg)}
+.about summary::-webkit-details-marker{display:none}
+.about summary::after{content:'+';color:var(--muted);font-weight:400;font-size:var(--t-lead);line-height:1}
+.about details[open] summary::after{content:'−'}
+.about summary:hover{color:var(--accent)}
+.about details>div{padding:0 0 16px}
+/* ? marks: a quiet round button beside a label; its meaning opens in place (.hbox) or as a bubble (.hbub) */
+.q{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:6px;padding:0;vertical-align:2px;position:relative;
+ border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--muted);font:600 11px/1 var(--font-ui);cursor:pointer}
+.q::after{content:'';position:absolute;inset:-8px}
+.q:hover,.q[aria-expanded="true"]{color:var(--accent);border-color:var(--accent)}
+.q:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hbox,.hbub{font-size:var(--t-sm);font-weight:400;line-height:1.55;color:var(--text);letter-spacing:0}
+.hbox p,.hbub p{margin:0}.hbox p+p,.hbub p+p{margin-top:6px}
+.hbox{background:var(--accent-soft);border-radius:8px;padding:10px 12px;margin:8px 0;max-width:var(--prose)}
+.hbub{position:fixed;z-index:20;width:max-content;max-width:min(340px,calc(100vw - 16px));background:var(--card);border:1px solid var(--line);
+ border-radius:var(--radius);padding:12px 36px 12px 14px;box-shadow:0 8px 28px rgba(0,0,0,.16)}
+.hbub .x{position:absolute;top:6px;right:6px;width:24px;height:24px;border:0;border-radius:50%;background:none;color:var(--muted);font:400 18px/1 var(--font-ui);cursor:pointer}
+.hbub .x:hover{color:var(--fg);background:var(--line)}
+/* A meta line under a heading belongs to it: a label's distance below the heading, then the heading's to the content */
+.asof{margin:calc(var(--s-label) - var(--s-near)) 0 var(--s-near)}
+/* Running text: one size (14), one ink, one line spacing, everywhere in the reading column (owner, 2026-10-02) */
+.about p,.about li,.about dd{font-size:var(--t-sm);line-height:1.6}
+
+.r h2{margin-top:56px}.r p,.r li{color:var(--text)}.r .lead{max-width:none}  /* full content width, as the breadth page (owner, 2026-10-03) */.r p+p,.r p+ul,.r ul+p{margin-top:var(--s-near)}
+.r ul{padding-left:20px;margin:var(--s-near) 0 0}.r li+li{margin-top:var(--s-row)}
+.r table{border-collapse:collapse;font-size:var(--t-sm);margin-top:var(--s-near);width:100%}
+.r th,.r td{text-align:left;vertical-align:top;padding:8px 12px 8px 0;border-bottom:1px solid var(--line)}
+.r th{color:var(--muted);font-weight:600}.r td:first-child{font-weight:600;color:var(--fg);white-space:nowrap}
+.r .scroll{overflow-x:auto}
+.r .pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-block) 32px;margin:var(--s-near) 0}.r .pair table{margin-top:0}
+.r td+td{font-variant-numeric:tabular-nums}.r tr.all td{color:var(--muted);font-weight:400}
+@media (max-width:619px){.r .pair{grid-template-columns:1fr}}
+@media (max-width:619px){.tabs .theme{display:none}}  /* as the main page: the bar keeps one line */
+@media (max-width:619px){.r td:first-child{white-space:normal}}
+/* Contents: a column on the left beside the text, as the main page's calendar, the section being read marked (wide
+   screens; owner, 2026-10-05). Narrower, the headline cards do its job and it stays out of the way. */
+.toc{display:none}
+.r [id]{scroll-margin-top:12px}
+@media (min-width:1080px){
+ .lay{display:grid;grid-template-columns:270px minmax(0,1fr);column-gap:32px;align-items:start}
+ .toc{display:block;position:sticky;top:12px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 0;font-size:var(--t-sm);line-height:1.4}
+ .toc .tt{margin:0 16px var(--s-label);font-size:var(--t-cap);color:var(--muted)}
+ .toc a{display:block;padding:5px 16px 5px 13px;border-left:3px solid transparent;color:var(--text);text-decoration:none}
+ .toc a.sub{padding:3px 16px 3px 29px;font-size:13px;color:var(--muted)}
+ .toc a:hover{color:var(--fg)}
+ .toc a.in{color:var(--fg)}
+ .toc a.on{border-left-color:var(--accent);color:var(--fg);font-weight:600;background:var(--accent-soft)}
+ /* the title's capitals level with the column's top edge */
+ @supports (text-box:trim-both cap alphabetic){.lay h1{text-box:trim-both cap alphabetic}}}
+/* The headline findings, in the main page's card style: a label, the number, a sentence */
+.r .found{margin-top:var(--s-section)}
+.tiles{display:grid;gap:12px;grid-template-columns:1fr;margin-top:var(--s-near)}
+@media (min-width:620px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.tile .k{font-size:13px;color:var(--muted);line-height:1.35}
+.tile .v{display:flex;align-items:stretch;gap:16px;white-space:nowrap;font-size:clamp(28px,2.4vw,38px);font-weight:500;line-height:1;font-variant-numeric:proportional-nums;letter-spacing:-.015em;margin-top:4px}
+.tile .v .nv{display:flex;flex-direction:column;gap:6px}
+.tile .v small{font-size:12px;font-weight:400;color:var(--muted);letter-spacing:0;line-height:1}
+.tile .v .sep{width:1px;background:var(--line)}
+.r .tile .w{font-size:12px;line-height:1.5;font-weight:300;color:var(--text);margin-top:14px}
+/* The results as bars, shaded by where each group sits among the five: red (worst) through amber to green (best),
+   the main page's scale; the dashed line is all days together. */
+.bars{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px 12px}
+.bars h3{font-size:var(--t-sm);line-height:1.4}.bars h3 span{display:block;color:var(--muted);font-weight:400}
+.bars .g{display:grid;grid-template-columns:6.5em minmax(0,1fr);column-gap:12px;row-gap:8px;margin-top:var(--s-near);padding-bottom:20px;position:relative;font-size:var(--t-sm);font-variant-numeric:tabular-nums}
+.bars .l{color:var(--text);line-height:20px;white-space:nowrap}
+.bars .t{position:relative;height:20px;z-index:1}
+.bars .t i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0}
+.bars .t b{position:absolute;top:0;line-height:20px;padding:0 3px 0 6px;background:var(--card);font-weight:600;color:var(--fg)}
+.bars .all{position:absolute;top:-4px;bottom:0;left:calc(6.5em + 12px + (100% - 6.5em - 12px) * var(--x) / 100)}
+.bars .all::before{content:'';position:absolute;left:0;top:0;bottom:18px;border-left:1.5px dashed var(--muted)}
+.bars .all span{position:absolute;left:0;bottom:0;transform:translateX(-50%);font-size:var(--t-cap);color:var(--muted);white-space:nowrap;line-height:1.2}
+@view-transition{navigation:auto}  /* a fade to and from the main page, not a blink */
+/* Findings: each heading on its own line, the findings well apart */
+.r ol>li+li{margin-top:var(--s-section)}.r ol>li>h3{margin-bottom:var(--s-label)}
+/* Verdict under each reading's name */
+.vd{display:block;width:max-content;margin-top:6px;padding:1px 8px;border-radius:999px;font-size:var(--t-cap);font-weight:500}
+.vd.r,.vd.l{background:var(--accent-soft);color:var(--accent)}.vd.c{background:var(--line);color:var(--muted)}
+/* The nine falls, in order: how deep, and whether breadth warned early */
+.falls{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:var(--s-block)}
+.falls h3{font-size:var(--t-sm);line-height:1.4}.falls h3 span{display:block;color:var(--muted);font-weight:400}
+.falls ol{list-style:none;margin:var(--s-near) 0 0;padding:0;display:grid;grid-template-columns:auto minmax(80px,1fr) auto;column-gap:16px;row-gap:8px;font-size:var(--t-sm);font-variant-numeric:tabular-nums}
+.falls li{display:contents}
+.falls .d{color:var(--text);line-height:20px;white-space:nowrap}
+.falls .t{position:relative;height:20px}
+.falls .t i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:var(--accent)}
+.falls .t b{position:absolute;top:0;line-height:20px;padding-left:6px;font-weight:600;color:var(--fg)}
+.falls .s{line-height:20px;color:var(--fg);white-space:nowrap}
+.falls .no i{background:var(--r2)}.falls .no .s{color:var(--r3)}
+.falls .soon i{background:var(--line)}.falls .soon .s{color:var(--muted)}.falls .cap{margin-top:var(--s-near)}
+@media (max-width:619px){.falls ol{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:2px}.falls .d{white-space:normal}.falls .s{grid-column:1/-1;margin-bottom:10px;white-space:normal}}
+</style></head><body><main class="r">
+<!-- The main page's tab bar, Research open: the other two go back to their tabs (owner, 2026-10-05). -->
+<nav class="tabs"><a href="./#breadth" data-umami-event="research-back" data-umami-event-tab="breadth">Market breadth</a><a href="./#commodities" data-umami-event="research-back" data-umami-event-tab="commodities">Commodities</a><a class="on" href="research.html" aria-current="page">Research</a><div class="theme" aria-label="Colour theme"><span class="seg thm"><button data-t="light">Light</button><button data-t="dark">Dark</button><button data-t="auto" title="Follow the device setting">Auto</button></span></div></nav>
+<div class="lay">
+<nav class="toc" aria-label="Contents"><p class="tt">Contents</p>
+<a href="#top">Summary</a>
+<a href="#question">The question</a>
+<a href="#method">How it was tested</a>
+<a href="#found">What it found</a>
+<a class="sub" href="#f1">Direction</a><a class="sub" href="#f2">Risk</a><a class="sub" href="#f3">Early warnings</a>
+<a class="sub" href="#f4">Single days</a><a class="sub" href="#f5">Beyond the index</a><a class="sub" href="#f6">Thresholds</a>
+<a class="sub" href="#f7">Washouts</a>
+<a href="#why">Why each reading is on the page</a>
+<a href="#off">Tested and left off</a>
+<a href="#limits">Limits</a>
+<a href="#data">Data</a>
+</nav>
+<div class="lmain">
+<h1 id="top">What breadth can and can't tell you</h1>
+<p class="lead">Breadth counts how many stocks are taking part in a move. Each reading on the <a href="./#breadth">Market breadth</a> page had to work on two separate stretches of history, or it stayed off.</p>
+<p class="meta found">What the tests found</p>
+<div class="tiles">
+<div class="tile"><p class="k">Breadth doesn't forecast direction</p><div class="v"><div class="nv">0 of 41<small>breadth measures tested</small></div></div>
+<p class="w">None called whether stocks would rise or fall in the coming weeks.</p></div>
+<div class="tile"><p class="k">Does forecast risk</p><div class="v"><div class="nv">−1.9%<small>3 in 4 stocks rising</small></div><span class="sep"></span><div class="nv">−3.8%<small>all days</small></div></div>
+<p class="w">How far mid and small companies fell at worst over the next month. Falls were half as deep when over 3 in 4 stocks were above their 50-day average (2022–2026).</p></div>
+<div class="tile"><p class="k">Often warns early before big falls</p><div class="v"><div class="nv">6 of 9<small>falls of 15% or more since 2016</small></div></div>
+<p class="w">A breadth reading on the page peaked 2–6 months before prices did.</p></div>
+<div class="tile"><p class="k">Single days are noise</p><div class="v"><div class="nv">2 days<small>how long one day's reading mattered</small></div></div>
+<p class="w">After that, a big up or down day said almost nothing about what came next. Ten-day averages still told you something a week or two later.</p></div>
+</div>
+
+<h2 id="question">The question</h2>
+<p>Breadth counts how many stocks are taking part in a move: how many rose or fell today, how many are at a one-year high or low,
+how many are above their 50-day average. Traders watch it to judge whether a market is healthy. Does any of it tell you something
+useful about what comes next, and which readings are worth a daily look?</p>
+
+<h2 id="method">How it was tested</h2>
+<ul>
+<li><b>Stocks:</b> each month's 1,000 most-traded stocks on the NSE, by value traded over the previous six months, counted equally.
+So the results mostly describe mid-sized and small companies.</li>
+<li><b>History:</b> NSE's daily files from January 2015 to October 2026 (readings from October 2015, after six months to rank the stocks), adjusted for splits and bonus issues.</li>
+<li><b>Two periods:</b> every measure was tuned on 2016–2021, then checked unchanged on 2022–2026. A measure counts only if
+it worked in both.</li>
+<li><b>41 measures</b>: rising and falling stocks, 3–6% daily moves, 52-week and 26-week highs and lows, stocks above
+10- to 200-day averages, moving-average crossovers, big monthly movers, volatility-scaled moves, and the Nifty against
+the broader market.</li>
+<li><b>Three outcomes measured</b>, one for each decision a trader makes:
+ <ul><li>the typical stock's return over the next 2–4 weeks (should I be in the market?);</li>
+ <li>the next month's deepest fall in mid and small companies: the biggest drop over the next 20 trading days in an
+ equal-weighted basket of the stocks ranked 251 to 1,000 (how much risk am I running?). On an average day it was about −3.8%;</li>
+ <li>how often breakouts work. A breakout is a stock rising 4% on higher volume, or closing above its previous 50-day high
+ (about 105 a day); it works if it reaches +10% before it falls 5%, within 20 trading days (should I press new entries?).
+ About 29% work on an average day.</li></ul></li>
+</ul>
+
+<h2 id="found">What it found</h2>
+<ol>
+<li id="f1"><h3>Breadth does not forecast direction</h3><p>None of the 41 measures said whether the typical stock would rise or fall over
+the next few weeks. Results that looked good in one period reversed in the other.</p></li>
+<li id="f2"><h3>It does tell you about risk</h3><p>Weak breadth was followed by deeper falls in mid and small companies, and by
+fewer breakouts that worked, in both periods. Every trading day was grouped by its breadth reading, and what followed was
+averaged for each group. From 2022 to 2026, the years held back for checking:</p>
+<div class="pair">
+<div class="bars"><h3>Deepest fall over the next month<span>by stocks above their 50-day average</span></h3><div class="g" role="img" aria-label="Deepest fall over the next month, by stocks above their 50-day average: Over 74% −1.9%; 60% to 74% −3.6%; 47% to 60% −4.4%; 30% to 47% −4.7%; Under 30% −4.6%; all days −3.8%"><span class="l">Over 74%</span><span class="t"><i style="width:28.4%;background:var(--g2)"></i><b style="left:28.4%">−1.9%</b></span><span class="l">60% to 74%</span><span class="t"><i style="width:53.7%;background:color-mix(in oklab,var(--amber) 79%,var(--r2))"></i><b style="left:53.7%">−3.6%</b></span><span class="l">47% to 60%</span><span class="t"><i style="width:65.7%;background:color-mix(in oklab,var(--amber) 21%,var(--r2))"></i><b style="left:65.7%">−4.4%</b></span><span class="l">30% to 47%</span><span class="t"><i style="width:70.1%;background:var(--r2)"></i><b style="left:70.1%">−4.7%</b></span><span class="l">Under 30%</span><span class="t"><i style="width:68.7%;background:color-mix(in oklab,var(--amber) 7%,var(--r2))"></i><b style="left:68.7%">−4.6%</b></span><span class="all" style="--x:56.7"><span>All days −3.8%</span></span></div></div>
+<div class="bars"><h3>Breakouts that worked<span>by stocks at one-year highs minus lows (of 1,000)</span></h3><div class="g" role="img" aria-label="Breakouts that worked, by stocks at one-year highs minus lows (of 1,000): Over +58 33%; +27 to +58 30%; +6 to +27 30%; −26 to +6 28%; Under −26 24%; all days 29%"><span class="l">Over +58</span><span class="t"><i style="width:70.2%;background:var(--g2)"></i><b style="left:70.2%">33%</b></span><span class="l">+27 to +58</span><span class="t"><i style="width:63.8%;background:color-mix(in oklab,var(--g2) 33%,var(--amber))"></i><b style="left:63.8%">30%</b></span><span class="l">+6 to +27</span><span class="t"><i style="width:63.8%;background:color-mix(in oklab,var(--g2) 33%,var(--amber))"></i><b style="left:63.8%">30%</b></span><span class="l">−26 to +6</span><span class="t"><i style="width:59.6%;background:color-mix(in oklab,var(--amber) 89%,var(--r2))"></i><b style="left:59.6%">28%</b></span><span class="l">Under −26</span><span class="t"><i style="width:51.1%;background:var(--r2)"></i><b style="left:51.1%">24%</b></span><span class="all" style="--x:61.7"><span>All days 29%</span></span></div></div>
+</div>
+<p>The two read differently. Falls were about as deep across most of the range and clearly milder only when breadth was
+broad, with three in four stocks above their average. Breakouts worked a little more often at each step up in highs over
+lows. These are averages over many days, not a forecast for any one day: a weak reading doesn't mean a fall is coming, only
+that falls have tended to be deeper and breakouts less reliable. It's a guide to how much to risk, not a signal to act on.
+The groups' edges were fixed on 2016–2021 data before these years were checked.</p></li>
+<li id="f3"><h3>It often warns early at tops, not at bottoms</h3><p>Before 6 of the 9 falls of 15% or more since 2016, at least one of the page's main readings had peaked 2–6 months
+before prices did; before two, in 2019 and 2020 (COVID), none had. At bottoms, breadth usually turned within a couple of
+days of prices.</p>
+<div class="falls"><h3>Falls of 15% or more in mid and small companies since 2016<span>Bar: the fall from peak to low. Label: did a main reading peak well before prices?</span></h3><ol><li class="soon"><span class="d">Feb 2016</span><span class="t"><i style="width:22.6%"></i><b style="left:22.6%">−17%</b></span><span class="s">Too soon to tell</span></li><li class="yes"><span class="d">Nov 2016</span><span class="t"><i style="width:25.4%"></i><b style="left:25.4%">−19%</b></span><span class="s">Warned about 4 months early</span></li><li class="yes"><span class="d">Jan 2018 – Feb 2019</span><span class="t"><i style="width:61.4%"></i><b style="left:61.4%">−46%</b></span><span class="s">Warned about 3 months early</span></li><li class="no"><span class="d">Mar – Aug 2019</span><span class="t"><i style="width:41.4%"></i><b style="left:41.4%">−31%</b></span><span class="s">No warning</span></li><li class="no"><span class="d">Jan – Mar 2020 (COVID)</span><span class="t"><i style="width:62.6%"></i><b style="left:62.6%">−47%</b></span><span class="s">No warning</span></li><li class="yes"><span class="d">Jan – Feb 2022</span><span class="t"><i style="width:25.4%"></i><b style="left:25.4%">−19%</b></span><span class="s">Warned about 6 months early</span></li><li class="yes"><span class="d">Apr – Jun 2022</span><span class="t"><i style="width:30.6%"></i><b style="left:30.6%">−23%</b></span><span class="s">Warned about 6 months early</span></li><li class="yes"><span class="d">Sep 2024 – Mar 2025</span><span class="t"><i style="width:36.0%"></i><b style="left:36.0%">−27%</b></span><span class="s">Warned about 3 months early</span></li><li class="yes"><span class="d">Jul 2025 – Mar 2026</span><span class="t"><i style="width:34.6%"></i><b style="left:34.6%">−26%</b></span><span class="s">Warned about 3 months early</span></li></ol><p class="cap">Too soon to tell: the history starts in October 2015, four months before that peak.</p></div>
+</li>
+<li id="f4"><h3>Single days are noise</h3><p>A big up or down day said almost nothing two days later. Ten-day averages and trend
+readings kept most of their value a week or two on. That's why the page shows each reading's history and its two-week
+average, not just today's figure.</p></li>
+<li id="f5"><h3>Two readings add something the index doesn't</h3><p>One-year highs minus lows, and the 10-day average of rising
+minus falling stocks, still forecast risk after allowing for where the index itself stood. The share of stocks above their
+50-day average is the clearest picture of the market's state, but mostly repeats what the index's own trend says.</p></li>
+<li id="f6"><h3>Exact thresholds don't matter</h3><p>Up 3%, 4%, 5% or 6% in a day; 20%, 25% or 30% in a month; 26- or 52-week highs:
+nearby choices gave the same results. The page uses the familiar ones.</p></li>
+<li id="f7"><h3>Washouts are only a weak hint</h3><p>When fewer than 30% of stocks were above their 50-day average, the typical stock
+rose 1.5% over the next month in 2022–2026, against about 0% on all days; in 2016–2021, 0.6% against 0.1%. Worth watching, not a buy signal.</p></li>
+</ol>
+
+<h2 id="why">Why each reading is on the page</h2>
+<div class="scroll"><table>
+<thead><tr><th>Reading</th><th>What the tests found</th></tr></thead><tbody>
+<tr><td>Stocks at one-year highs minus lows<span class="vd r">Forecasts risk</span></td><td>The best all-round reading: forecasts both breakout success and the depth of falls, in both periods, beyond what the index shows. Peaked early before several big falls.</td></tr>
+<tr><td>Stocks above their 50-day average<span class="vd r">Forecasts risk</span></td><td>The clearest split between calm and rough months ahead. 40-, 50- and 100-day averages behave alike; 50 is the familiar one.</td></tr>
+<tr><td>Stocks above their 5-day average<span class="vd c">Context only</span></td><td>The past week's picture. Not one of the tested measures.</td></tr>
+<tr><td>Rising minus falling stocks, 10-day average<span class="vd r">Forecasts risk</span></td><td>Forecasts risk beyond the index, and peaked 2–6 months early before four of the big falls. Covers many look-alike measures (4% moves, 4% ratios), which were dropped.</td></tr>
+<tr><td>Stocks up or down 4% today, and up or down 25% or 50% in a month<span class="vd c">Context only</span></td><td>What happened, and how many big moves there are to trade. No forecasting value of their own.</td></tr>
+<tr><td>Nifty 50, Midcap 150, Smallcap 250<span class="vd c">Context only</span></td><td>Show which size of company is leading. Their gap didn't forecast anything once the index's own move was allowed for. The Nifty against its 50-day average shows the index's own trend.</td></tr>
+<tr><td>Sectors<span class="vd l">Forecasts leaders</span></td><td>Sectors whose stocks led over the past 1–3 months tended to keep leading: the top 3 beat the bottom 3 by about 1% over the next month, in both periods (positive in 9 of 12 years). This shows up when a sector's stocks are counted equally; the size-weighted sector indices barely showed it. Breakouts in leading sectors didn't work much better, so it's a guide to where to look, not when. The count of sectors in an uptrend is context: it moves with the share of stocks above their 50-day average.</td></tr>
+<tr><td>Options: expected against actual swings<span class="vd c">Context only</span></td><td>Options priced in a bigger move than the Nifty then made on about 4 days in 5, and buying an at-the-money straddle every month lost money in most months. Nothing reliably said when buying options would pay. Shown so you know whether options are cheap or dear today.</td></tr>
+<tr><td>Commodities<span class="vd c">Context only</span></td><td>Judged on their own trend, because weak Indian breadth didn't time gold, silver, US or Hong Kong stocks, or bonds. Gold was the one steady diversifier: it rose in 6 of the 8 falls of 15% or more in the Smallcap 250 index since 2016.</td></tr>
+</tbody></table></div>
+
+<h2 id="off">Tested and left off</h2>
+<ul>
+<li><b>A live breakout success rate:</b> it moved with the readings already shown and added nothing.</li>
+<li><b>Breadth of large, mid and small companies separately:</b> the three move together.</li>
+<li><b>Signals for short selling:</b> breakdowns in F&amp;O stocks worked no better than shorting at random since 2022.
+Shorts paid only during fast falls, which no reading flagged in advance.</li>
+<li><b>Timing option purchases</b> with VIX or breadth, including out-of-the-money Nifty options with targets and stops:
+no rule made money in both periods.</li>
+<li><b>Switching to gold, silver, US or Hong Kong stocks, or bonds when breadth is weak:</b> no reliable timing.</li>
+<li><b>A single "market state" label</b> (uptrend, narrow, downtrend): it flipped about every two weeks and turned only
+after falls had begun.</li>
+<li><b>Weighing rising and falling stocks by money traded:</b> it repeated the plain counts.</li>
+<li><b>How far apart the leading and lagging sectors are:</b> it said nothing about the next month.</li>
+<li><b>Moving-average crossovers, 2-standard-deviation moves, and other averages:</b> weaker, or duplicates of what's shown.</li>
+</ul>
+
+<h2 id="limits">Limits</h2>
+<p>The effects are real but modest: tilts, not switches. Eleven years hold only nine serious falls, so the warnings at tops
+are a pattern across a handful of cases, not a statistical certainty. Stocks that were later delisted drop out of the forward
+returns, and the sector results use today's sector list for the past. Use the page as one input to how much risk you take,
+not as a trading system.</p>
+
+<h2 id="data">Data</h2>
+<p>NSE's free daily price and index files; sectors from NSE's Nifty Total Market list; commodities and the rupee from MCX and NSE futures through
+Zerodha's Kite Connect. The page's full daily history since October 2015 is a free download: <a href="breadth.csv"
+data-umami-event="download" data-umami-event-file="breadth.csv">breadth.csv</a>. Study run October 2026.</p>
+<p style="margin-top:var(--s-section)"><a href="./">See today's readings →</a></p>
+</div></div>
+<script>// Contents: the section whose heading has scrolled near the top is marked (at the end of the page, the last one); an
+// entry tapped stays marked until the reader scrolls on, as a short section's neighbour also reaches the top.
+{const L=[...document.querySelectorAll('.toc a')],T=L.map(a=>document.getElementById(a.hash.slice(1)));let pick=null;
+ const spy=()=>{let i=0;T.forEach((t,k)=>{if(t.getBoundingClientRect().top<=100)i=k});
+  if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)i=T.length-1;if(pick!=null)i=pick;
+  let p=i;while(p>0&&L[p].classList.contains('sub'))p--;
+  L.forEach((a,k)=>{a.classList.toggle('on',k===i);a.classList.toggle('in',k===p&&p!==i)})};
+ L.forEach((a,k)=>a.addEventListener('click',()=>{pick=k;setTimeout(spy,50)}));
+ for(const e of ['wheel','touchstart','keydown','pointerdown'])addEventListener(e,()=>{pick=null},{passive:true});
+ addEventListener('scroll',spy,{passive:true});addEventListener('resize',spy);spy()}
+</script>
+<script>// The theme switch, as on the main page: a tap is remembered for both pages.
+{const set=t=>{if(t==='auto')delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t;
+ document.querySelectorAll('.thm button').forEach(b=>b.classList.toggle('on',b.dataset.t===t))};
+ let t='auto';try{t=localStorage.getItem('theme')||'auto'}catch(e){}set(t);
+ document.querySelectorAll('.thm button').forEach(b=>b.onclick=()=>{try{localStorage.setItem('theme',b.dataset.t)}catch(e){}set(b.dataset.t)})}
+</script></main></body></html>
