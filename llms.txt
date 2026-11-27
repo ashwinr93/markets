@@ -1,0 +1,17 @@
+# Indian Market Breadth
+
+> A free daily page on the health of the Indian stock market as a whole: how many of the 1,000 most-traded NSE stocks are rising or falling, at 52-week highs or lows, and above their 5- and 50-day averages, with sector strength, India VIX against the Nifty's actual swings, MCX commodity trends (gold, silver, crude oil, copper, natural gas, the rupee) and a calendar of market holidays, expiries and central-bank decisions. Updated every 10 minutes while the market is open; final figures each weekday evening (IST). No sign-up, no ads.
+
+It is built to judge how risky the market is, not which way it will go. A test of 41 breadth measures on 2015–2026 (tuned on 2016–2021, checked unchanged on 2022–2026) found that breadth does not forecast the direction of Indian stocks over the next few weeks, but does forecast the depth of the next month's falls in mid and small companies and how often breakouts succeed. Breadth peaked 2–6 months before prices at 6 of 9 falls of 15% or more since 2016.
+
+## Pages
+
+- [Indian Market Breadth](https://markets.ashwinraghavan.com/): today's readings, each compared with every trading day since 2015, charts, a sector table, the last 30 days, and the Commodities tab
+- [The research behind the page](https://markets.ashwinraghavan.com/research.html): what was tested, what each reading is good for, and what was left off
+
+## Data
+
+- [Daily breadth history since October 2015 (CSV)](https://markets.ashwinraghavan.com/breadth.csv): counts per 100 stocks, plus Nifty 50, Midcap 150, Smallcap 250 and India VIX
+- [Today's sector table (CSV)](https://markets.ashwinraghavan.com/sectors.csv)
+
+Sources: NSE's free daily price and index files; sectors from NSE's Nifty Total Market list; intraday figures and MCX futures through Zerodha's Kite Connect.
